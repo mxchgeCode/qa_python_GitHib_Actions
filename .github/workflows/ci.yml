@@ -16,7 +16,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # укажите вашу версию Python
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
@@ -28,10 +28,8 @@ jobs:
         run: |
           pytest --junitxml=reports/junit.xml
 
-      - name: Publish test report
-        uses: dorny/test-reporter@v1
+      - name: Upload JUnit test report
+        uses: actions/upload-test-report@v1
         if: always()
         with:
-          name: Pytest Results
           path: reports/junit.xml
-          reporter: testReport
