@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
@@ -28,8 +28,12 @@ jobs:
         run: |
           pytest --junitxml=reports/junit.xml
 
-      - name: Upload JUnit test report
-        uses: actions/upload-test-report@v1
+      - name: Show pytest results
         if: always()
+        uses: pmeier/pytest-results-action@main
         with:
           path: reports/junit.xml
+          summary: true
+          display-options: fEX
+          fail-on-empty: true
+          title: Pytest Results
