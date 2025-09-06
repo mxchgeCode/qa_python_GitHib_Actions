@@ -3,7 +3,7 @@ name: Python pytest CI
 on:
   push:
     branches:
-      - main  # или ваша рабочая ветка
+      - develop
 
 jobs:
   test:
